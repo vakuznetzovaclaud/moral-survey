@@ -265,13 +265,9 @@ function bindPost() {
   });
 }
 function renderFinish() {
-  const payload = exportPayload();
-  return `<div class="card"><h2>Спасибо за участие</h2><div class="card success"><p>${state.submitMessage || "Результаты успешно сохранены."}</p></div><div class="actions"><button id="downloadCsvBtn">Скачать CSV</button><button id="downloadJsonBtn">Скачать JSON</button></div><div class="summary"><h3>Предпросмотр структуры данных</h3><pre>${escapeHtml(JSON.stringify(payload, null, 2))}</pre></div></div>`;
+  return `<div class="card"><h2>Спасибо за участие</h2><div class="card success"><p>${state.submitMessage || "Результаты успешно сохранены."}</p></div></div>`;
 }
-function bindFinish() {
-  document.getElementById("downloadCsvBtn").addEventListener("click", () => downloadFile(`${state.respondentId}_results.csv`, objectsToCSV([buildWideRow()]), "text/csv;charset=utf-8"));
-  document.getElementById("downloadJsonBtn").addEventListener("click", () => downloadFile(`${state.respondentId}_results.json`, JSON.stringify(exportPayload(), null, 2), "application/json"));
-}
+function bindFinish() {}
 function escapeHtml(str) { return str.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;"); }
 function render() {
   setProgress();
