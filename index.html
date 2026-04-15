@@ -6,166 +6,34 @@
   <title>Моральные дилеммы — эксперимент</title>
   <style>
     :root {
-      --bg: #f6f7fb;
-      --card: #ffffff;
-      --text: #1f2937;
-      --muted: #6b7280;
-      --border: #dbe2ea;
-      --accent: #2563eb;
-      --accent-2: #eff6ff;
-      --ok: #166534;
-      --ok-bg: #f0fdf4;
+      --bg: #f6f7fb; --card: #ffffff; --text: #1f2937; --muted: #6b7280;
+      --border: #dbe2ea; --accent: #2563eb; --accent-2: #eff6ff;
+      --ok: #166534; --ok-bg: #f0fdf4; --danger: #b91c1c;
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.5;
-    }
-    .wrap {
-      max-width: 920px;
-      margin: 0 auto;
-      padding: 24px 16px 48px;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.04);
-      margin-bottom: 16px;
-    }
+    body { margin: 0; font-family: Inter, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+    .wrap { max-width: 920px; margin: 0 auto; padding: 24px 16px 48px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.04); margin-bottom: 16px; }
     h1, h2, h3 { margin-top: 0; }
     .muted { color: var(--muted); }
     .hidden { display: none; }
-    .row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    @media (max-width: 720px) {
-      .row { grid-template-columns: 1fr; }
-    }
-    label {
-      display: block;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-    input[type="text"], input[type="number"], select, textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      font-size: 15px;
-      background: white;
-    }
-    .radio-group, .likert {
-      display: grid;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .radio-option {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-      cursor: pointer;
-      background: white;
-    }
+    label { display: block; font-weight: 600; margin-bottom: 8px; }
+    input[type="text"], input[type="number"], select { width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); font-size: 15px; background: white; }
+    .radio-group, .likert { display: grid; gap: 10px; margin-top: 10px; }
+    .radio-option { border: 1px solid var(--border); border-radius: 12px; padding: 14px; cursor: pointer; background: white; }
     .radio-option input { margin-right: 10px; }
-    .likert {
-      grid-template-columns: repeat(7, 1fr);
-    }
-    .likert label {
-      font-weight: 500;
-      text-align: center;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 10px 4px;
-      margin: 0;
-      background: white;
-      cursor: pointer;
-    }
-    .actions {
-      display: flex;
-      gap: 12px;
-      justify-content: space-between;
-      margin-top: 20px;
-      flex-wrap: wrap;
-    }
-    button {
-      appearance: none;
-      border: 0;
-      background: var(--accent);
-      color: white;
-      border-radius: 12px;
-      padding: 12px 16px;
-      font-size: 15px;
-      cursor: pointer;
-    }
-    button.secondary {
-      background: white;
-      color: var(--text);
-      border: 1px solid var(--border);
-    }
-    .advisor {
-      border: 1px solid #bfdbfe;
-      background: var(--accent-2);
-      border-radius: 14px;
-      padding: 16px;
-      margin-top: 18px;
-    }
-    .advisor h3 {
-      margin-bottom: 8px;
-      color: #1d4ed8;
-    }
-    .pill {
-      display: inline-block;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: #eef2ff;
-      color: #3730a3;
-      border: 1px solid #c7d2fe;
-      font-size: 13px;
-      margin-right: 6px;
-      margin-bottom: 6px;
-    }
-    .success {
-      background: var(--ok-bg);
-      border: 1px solid #bbf7d0;
-      color: var(--ok);
-    }
-    .error {
-      color: #b91c1c;
-      font-weight: 600;
-      margin-top: 10px;
-    }
-    .progress {
-      height: 10px;
-      width: 100%;
-      background: #e5e7eb;
-      border-radius: 999px;
-      overflow: hidden;
-      margin-bottom: 16px;
-    }
-    .progress > div {
-      height: 100%;
-      background: var(--accent);
-      width: 0%;
-      transition: width .25s ease;
-    }
+    .likert { grid-template-columns: repeat(7, 1fr); }
+    .likert label { font-weight: 500; text-align: center; border: 1px solid var(--border); border-radius: 10px; padding: 10px 4px; margin: 0; background: white; cursor: pointer; }
+    .actions { display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px; flex-wrap: wrap; }
+    button { appearance: none; border: 0; background: var(--accent); color: white; border-radius: 12px; padding: 12px 16px; font-size: 15px; cursor: pointer; }
+    button:disabled { opacity: .7; cursor: not-allowed; }
+    .advisor { border: 1px solid #bfdbfe; background: var(--accent-2); border-radius: 14px; padding: 16px; margin-top: 18px; }
+    .progress { height: 10px; width: 100%; background: #e5e7eb; border-radius: 999px; overflow: hidden; margin-bottom: 16px; }
+    .progress > div { height: 100%; background: var(--accent); width: 0%; transition: width .25s ease; }
     .small { font-size: 14px; }
-    .summary pre {
-      white-space: pre-wrap;
-      word-break: break-word;
-      background: #f8fafc;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px;
-      overflow: auto;
-      max-height: 320px;
-    }
+    .error { color: var(--danger); font-weight: 600; margin-top: 10px; }
+    .success { background: var(--ok-bg); border: 1px solid #bbf7d0; color: var(--ok); }
+    .summary pre { white-space: pre-wrap; word-break: break-word; background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; padding: 12px; overflow: auto; max-height: 320px; }
   </style>
 </head>
 <body>
@@ -175,851 +43,249 @@
   </div>
 
 <script>
-const STORAGE_KEY = "moral_experiment_v1_group_assignment";
+const STORAGE_KEY = "moral_experiment_fixed_assignment_v1";
+const RESULTS_KEY = "moral_experiment_fixed_results_v1";
+const GOOGLE_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbykduRvpkLkzhJd6cXAFQGI3JqkKuCynGMmUE5hZ_GIkIPcuSOo4bDbQpIYaQqXyZ0/exec";
 
-function shuffle(arr) {
-  const a = [...arr];
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
+function nowISO() { return new Date().toISOString(); }
 function downloadFile(filename, content, mimeType) {
   const blob = new Blob([content], { type: mimeType });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  a.click();
-  URL.revokeObjectURL(url);
+  a.href = url; a.download = filename; a.click(); URL.revokeObjectURL(url);
 }
-
-function nowISO() {
-  return new Date().toISOString();
-}
-
 function getOrAssignGroup() {
   let stored = localStorage.getItem(STORAGE_KEY);
   if (stored) return JSON.parse(stored);
-
   const groupNumber = Math.floor(Math.random() * 18) + 1;
   const advisorType = groupNumber <= 9 ? "ai" : "human";
-
-  // 9 комбинаций: в каждом из 2 блоков ровно одна из 3 дилемм получает противоположную рекомендацию
-  const patternIndex = (groupNumber - 1) % 9; // 0..8
-  const oppositeEverydayIndex = Math.floor(patternIndex / 3); // 0..2
-  const oppositeClassicIndex = patternIndex % 3; // 0..2
-
-  const assignment = {
-    groupNumber,
-    advisorType,
-    patternIndex: patternIndex + 1,
-    oppositeEverydayIndex,
-    oppositeClassicIndex,
-    createdAt: nowISO()
-  };
+  const patternIndex = (groupNumber - 1) % 9;
+  const oppositeEverydayIndex = Math.floor(patternIndex / 3);
+  const oppositeClassicIndex = patternIndex % 3;
+  const assignment = { groupNumber, advisorType, patternIndex: patternIndex + 1, oppositeEverydayIndex, oppositeClassicIndex, createdAt: nowISO() };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(assignment));
   return assignment;
 }
-
 const advisorLabels = {
   ai: "Рекомендация ИИ (чат-бота, работающего на основе одной из современных моделей искусственного интеллекта)",
   human: "Рекомендация эксперта-философа"
 };
-
 const preQuestions = [
-  {
-    id: "gender",
-    type: "select",
-    label: "Пол",
-    options: ["Женский", "Мужской", "Небинарный / другой", "Предпочитаю не указывать"]
-  },
+  { id: "gender", type: "select", label: "Пол", options: ["Женский", "Мужской", "Небинарный / другой", "Предпочитаю не указывать"] },
   { id: "age", type: "number", label: "Возраст", min: 14, max: 120 },
-  {
-    id: "education_level",
-    type: "select",
-    label: "Уровень образования",
-    options: [
-      "Среднее общее",
-      "Среднее профессиональное",
-      "Неоконченное высшее",
-      "Высшее",
-      "Магистратура / специалитет",
-      "Аспирантура / ученая степень",
-      "Другое"
-    ]
-  },
-  {
-    id: "education_profile",
-    type: "select",
-    label: "Укажите Ваш профиль образования / сферу занятости",
-    options: [
-      "Гуманитарные науки",
-      "Социальные науки",
-      "Психология/Философия",
-      "Естественные науки",
-      "Технические/инженерные",
-      "ИТ/разработка/данные",
-      "Медицина/био",
-      "Экономика/бизнес/менеджмент",
-      "Другое"
-    ]
-  },
-  {
-    id: "employment_status",
-    type: "select",
-    label: "Ваш текущий статус занятости",
-    options: ["Учусь", "Работаю", "Учусь и работаю", "Не учусь и не работаю", "Другое"]
-  }
+  { id: "education_level", type: "select", label: "Уровень образования", options: ["Среднее общее", "Среднее профессиональное", "Неоконченное высшее", "Высшее", "Магистратура / специалитет", "Аспирантура / ученая степень", "Другое"] },
+  { id: "education_profile", type: "select", label: "Укажите Ваш профиль образования / сферу занятости", options: ["Гуманитарные науки", "Социальные науки", "Психология/Философия", "Естественные науки", "Технические/инженерные", "ИТ/разработка/данные", "Медицина/био", "Экономика/бизнес/менеджмент", "Другое"] },
+  { id: "employment_status", type: "select", label: "Ваш текущий статус занятости", options: ["Учусь", "Работаю", "Учусь и работаю", "Не учусь и не работаю", "Другое"] }
 ];
-
 const postQuestions = [
-  {
-    id: "ai_usage",
-    type: "select",
-    label: "Как часто вы используете системы искусственного интеллекта?",
-    options: [
-      "Несколько раз в день",
-      "Примерно раз в день",
-      "Несколько раз в неделю",
-      "Реже раза в неделю",
-      "Практически не использую"
-    ]
-  },
-  {
-    id: "ai_trust",
-    type: "likert",
-    label: "Насколько вы доверяете искусственному интеллекту?",
-    scaleMin: 1,
-    scaleMax: 7,
-    left: "Совсем не доверяю",
-    right: "Полностью доверяю"
-  },
-  {
-    id: "ai_agent",
-    type: "select_with_other",
-    label: "Каким ИИ агентом вы чаще всего пользуетесь?",
-    options: ["ChatGPT", "Claude", "Gemini", "Grok", "YandexGPT", "Perplexity", "Copilot", "Не пользуюсь", "Другое"]
-  }
+  { id: "ai_usage", type: "select", label: "Как часто вы используете системы искусственного интеллекта?", options: ["Несколько раз в день", "Примерно раз в день", "Несколько раз в неделю", "Реже раза в неделю", "Практически не использую"] },
+  { id: "ai_trust", type: "likert", label: "Насколько вы доверяете искусственному интеллекту?", scaleMin: 1, scaleMax: 7, left: "Совсем не доверяю", right: "Полностью доверяю" },
+  { id: "ai_agent", type: "select_with_other", label: "Каким ИИ агентом вы чаще всего пользуетесь?", options: ["ChatGPT", "Claude", "Gemini", "Grok", "YandexGPT", "Perplexity", "Copilot", "Не пользуюсь", "Другое"] }
 ];
-
-const blocks = [
-  {
-    id: "everyday",
-    title: "Блок 1. Бытовые моральные дилеммы",
-    dilemmas: [
-      {
-        id: "cashier",
-        title: "Дилемма 1",
-        text: "Вы стоите на кассе в супермаркете и собираетесь оплатить покупки на сумму 800 рублей. Вы даете кассиру купюру 1000 рублей. По ошибке она возвращает вам 400 рублей вместо 200. Что вы сделаете?",
-        options: {
-          A: "Вы вернете деньги.",
-          B: "Вы не вернете деньги."
-        },
-        justifications: {
-          A: "Я бы вернул деньги, потому что общество держится на взаимном доверии, и даже небольшая выгода за счёт ошибки другого его подрывает. Честность в таких ситуациях — основа справедливости в обществе.",
-          B: "Я бы оставил деньги себе, потому что в повседневной жизни крупные корпорации нередко получают выгоду из наших ошибок, и удержание переплаты может восприниматься как способ восстановить баланс в пользу обычного человека."
-        }
-      },
-      {
-        id: "bus",
-        title: "Дилемма 2",
-        text: "Вы бежите, чтобы успеть на автобус, который сейчас уезжает и ходит только раз в час. Перед вами у женщины с двумя маленькими детьми из сумки выпадают вещи. Кроме вас, вокруг нет никого, кто мог бы ей помочь. Что вы сделаете?",
-        options: {
-          A: "Вы поможете женщине.",
-          B: "Вы не поможете женщине."
-        },
-        justifications: {
-          A: "Я бы помог женщине, потому что помощь в ситуации очевидной нужды укрепляет доверие и взаимную поддержку между людьми. Именно благодаря таким поступкам формируются солидарность и чувство безопасности, на которых держится общество.",
-          B: "Я бы побежал к автобусу, потому что забота о собственных планах и обязательствах также имеет значение. Не каждая ситуация требует самопожертвования, такие случаи важно оценивать с учётом разумного баланса между личными обязанностями и помощью другим."
-        }
-      },
-      {
-        id: "wardrobe",
-        title: "Дилемма 3",
-        text: "Вы разместили объявление о продаже шкафа. Женщина, которая собирается забрать его на следующей неделе, предлагает заплатить 14000 рублей, и вы соглашаетесь. Вскоре после этого вам звонит другой человек и предлагает 20000 рублей. Что вы сделаете?",
-        options: {
-          A: "Вы сдержите своё обещание.",
-          B: "Вы не сдержите своё обещание."
-        },
-        justifications: {
-          A: "Я бы сдержал своё обещание, потому что добровольно данное слово создаёт обязательство, на котором держится доверие в обществе. Я бы рекомендовал считать обещания морально обязывающими, даже при появлении более выгодных альтернатив.",
-          B: "Я бы продал шкаф дороже, потому что до окончательного завершения сделки стороны сохраняют возможность пересмотреть условия, а стремление к более выгодному исходу может считаться допустимым мотивом."
-        }
-      }
-    ]
-  },
-  {
-    id: "classic",
-    title: "Блок 2. Классические моральные дилеммы",
-    dilemmas: [
-      {
-        id: "restaurant",
-        title: "Дилемма 1",
-        text: "Вы ужинаете с друзьями в ресторане. В помещение входит преступник с автоматом. Он угрожает расстрелять столик, за которым сидит семья из шести человек, если ему не заплатят большую сумму денег. Вы понимаете, что у нападавшего психические проблемы и любые попытки договориться будут бесполезны. Рядом с вами стоит мужчина. Вы можете толкнуть этого мужчину в сторону преступника, чтобы тот выстрелил в него. Вы знаете, что этот человек погибнет, но у шести человек будет время убежать. Что вы сделаете?",
-        options: {
-          A: "Вы толкнёте мужчину.",
-          B: "Вы не будете его толкать."
-        },
-        justifications: {
-          A: "Я бы толкнул мужчину, потому что спасение большего числа жизней может рассматриваться как приоритетное, если нет иных средств предотвратить гибель. В такой ситуации сохранение большего числа людей перевешивает моральную сложность самого поступка.",
-          B: "Я бы не толкал мужчину, потому что использование человека как средства для спасения других нарушает принцип уважения к личности. Важно придерживаться простого морального ориентира: не жертвовать одним человеком ради других, даже перед лицом тяжёлых последствий."
-        }
-      },
-      {
-        id: "tram",
-        title: "Дилемма 2",
-        text: "Вы идёте на работу и вместе с другими людьми ждёте трамвай на остановке. Вы замечаете, что у трамвая, который быстро приближается, отказали тормоза и он вот-вот врежется в группу из пяти человек, которые переходят дорогу и не замечают опасности. Рядом с вами стоит незнакомый человек. Вы можете толкнуть этого человека под трамвай, чтобы его тело замедлило движение. Вы знаете, что он погибнет, но пять человек останутся невредимыми. Что вы сделаете?",
-        options: {
-          A: "Вы толкнёте человека.",
-          B: "Вы не будете его толкать."
-        },
-        justifications: {
-          A: "Я бы толкнул человека, потому что при отсутствии других вариантов спасение пяти жизней может считаться морально предпочтительным исходом. Но такие случаи исключительны и не должны становиться нормой поведения.",
-          B: "Я бы не толкал человека, потому что прямое использование его тела как средства нарушает моральный запрет на преднамеренное убийство. Даже ради благой цели такое действие проблематично."
-        }
-      },
-      {
-        id: "zoo",
-        title: "Дилемма 3",
-        text: "Вы — главный смотритель зоопарка и обходите территорию вместе с другим сотрудником. Вы замечаете, что клетка со львами открыта. Лев направляется к выходу, и у вас нет времени закрыть его. Прямо перед выходом находятся три посетителя. Рядом с вами стоит сотрудник. Вы можете толкнуть сотрудника к воротам, чтобы он остановил льва. Вы знаете, что на него нападут и он погибнет, но три посетителя будут спасены. Что вы сделаете?",
-        options: {
-          A: "Вы толкнёте сотрудника.",
-          B: "Вы не будете его толкать."
-        },
-        justifications: {
-          A: "Я бы толкнул сотрудника, потому что спасение нескольких людей может рассматриваться как морально оправданная цель в ситуации неминуемой угрозы. Я бы рекомендовал оценивать такие решения по их последствиям и отдавать приоритет спасению наибольшего числа людей.",
-          B: "Я бы не толкал сотрудника, ведь даже под давлением обстоятельств сохраняется обязанность не причинять прямой вред другим людям. Я бы рекомендовал придерживаться принципа недопустимости использования человека как средства."
-        }
-      }
-    ]
-  }
+const dilemmas = [
+  { blockId: "everyday", localIndex: 1, globalIndex: 1, id: "cashier", text: "Вы стоите на кассе в супермаркете и собираетесь оплатить покупки на сумму 800 рублей. Вы даете кассиру купюру 1000 рублей. По ошибке она возвращает вам 400 рублей вместо 200. Что вы сделаете?", options: { A: "Вы вернете деньги.", B: "Вы не вернете деньги." }, justifications: { A: "Я бы вернул деньги, потому что общество держится на взаимном доверии, и даже небольшая выгода за счёт ошибки другого его подрывает. Честность в таких ситуациях — основа справедливости в обществе.", B: "Я бы оставил деньги себе, потому что в повседневной жизни крупные корпорации нередко получают выгоду из наших ошибок, и удержание переплаты может восприниматься как способ восстановить баланс в пользу обычного человека." } },
+  { blockId: "everyday", localIndex: 2, globalIndex: 2, id: "bus", text: "Вы бежите, чтобы успеть на автобус, который сейчас уезжает и ходит только раз в час. Перед вами у женщины с двумя маленькими детьми из сумки выпадают вещи. Кроме вас, вокруг нет никого, кто мог бы ей помочь. Что вы сделаете?", options: { A: "Вы поможете женщине.", B: "Вы не поможете женщине." }, justifications: { A: "Я бы помог женщине, потому что помощь в ситуации очевидной нужды укрепляет доверие и взаимную поддержку между людьми. Именно благодаря таким поступкам формируются солидарность и чувство безопасности, на которых держится общество.", B: "Я бы побежал к автобусу, потому что забота о собственных планах и обязательствах также имеет значение. Не каждая ситуация требует самопожертвования, такие случаи важно оценивать с учётом разумного баланса между личными обязанностями и помощью другим." } },
+  { blockId: "everyday", localIndex: 3, globalIndex: 3, id: "wardrobe", text: "Вы разместили объявление о продаже шкафа. Женщина, которая собирается забрать его на следующей неделе, предлагает заплатить 14000 рублей, и вы соглашаетесь. Вскоре после этого вам звонит другой человек и предлагает 20000 рублей. Что вы сделаете?", options: { A: "Вы сдержите своё обещание.", B: "Вы не сдержите своё обещание." }, justifications: { A: "Я бы сдержал своё обещание, потому что добровольно данное слово создаёт обязательство, на котором держится доверие в обществе. Я бы рекомендовал считать обещания морально обязывающими, даже при появлении более выгодных альтернатив.", B: "Я бы продал шкаф дороже, потому что до окончательного завершения сделки стороны сохраняют возможность пересмотреть условия, а стремление к более выгодному исходу может считаться допустимым мотивом." } },
+  { blockId: "classic", localIndex: 1, globalIndex: 4, id: "restaurant", text: "Вы ужинаете с друзьями в ресторане. В помещение входит преступник с автоматом. Он угрожает расстрелять столик, за которым сидит семья из шести человек, если ему не заплатят большую сумму денег. Вы понимаете, что у нападавшего психические проблемы и любые попытки договориться будут бесполезны. Рядом с вами стоит мужчина. Вы можете толкнуть этого мужчину в сторону преступника, чтобы тот выстрелил в него. Вы знаете, что этот человек погибнет, но у шести человек будет время убежать. Что вы сделаете?", options: { A: "Вы толкнёте мужчину.", B: "Вы не будете его толкать." }, justifications: { A: "Я бы толкнул мужчину, потому что спасение большего числа жизней может рассматриваться как приоритетное, если нет иных средств предотвратить гибель. В такой ситуации сохранение большего числа людей перевешивает моральную сложность самого поступка.", B: "Я бы не толкал мужчину, потому что использование человека как средства для спасения других нарушает принцип уважения к личности. Важно придерживаться простого морального ориентира: не жертвовать одним человеком ради других, даже перед лицом тяжёлых последствий." } },
+  { blockId: "classic", localIndex: 2, globalIndex: 5, id: "tram", text: "Вы идёте на работу и вместе с другими людьми ждёте трамвай на остановке. Вы замечаете, что у трамвая, который быстро приближается, отказали тормоза и он вот-вот врежется в группу из пяти человек, которые переходят дорогу и не замечают опасности. Рядом с вами стоит незнакомый человек. Вы можете толкнуть этого человека под трамвай, чтобы его тело замедлило движение. Вы знаете, что он погибнет, но пять человек останутся невредимыми. Что вы сделаете?", options: { A: "Вы толкнёте человека.", B: "Вы не будете его толкать." }, justifications: { A: "Я бы толкнул человека, потому что при отсутствии других вариантов спасение пяти жизней может считаться морально предпочтительным исходом. Но такие случаи исключительны и не должны становиться нормой поведения.", B: "Я бы не толкал человека, потому что прямое использование его тела как средства нарушает моральный запрет на преднамеренное убийство. Даже ради благой цели такое действие проблематично." } },
+  { blockId: "classic", localIndex: 3, globalIndex: 6, id: "zoo", text: "Вы — главный смотритель зоопарка и обходите территорию вместе с другим сотрудником. Вы замечаете, что клетка со львами открыта. Лев направляется к выходу, и у вас нет времени закрыть его. Прямо перед выходом находятся три посетителя. Рядом с вами стоит сотрудник. Вы можете толкнуть сотрудника к воротам, чтобы он остановил льва. Вы знаете, что на него нападут и он погибнет, но три посетителя будут спасены. Что вы сделаете?", options: { A: "Вы толкнёте сотрудника.", B: "Вы не будете его толкать." }, justifications: { A: "Я бы толкнул сотрудника, потому что спасение нескольких людей может рассматриваться как морально оправданная цель в ситуации неминуемой угрозы. Я бы рекомендовал оценивать такие решения по их последствиям и отдавать приоритет спасению наибольшего числа людей.", B: "Я бы не толкал сотрудника, ведь даже под давлением обстоятельств сохраняется обязанность не причинять прямой вред другим людям. Я бы рекомендовал придерживаться принципа недопустимости использования человека как средства." } }
 ];
+const state = { assignment: getOrAssignGroup(), respondentId: `R-${Date.now()}-${Math.floor(Math.random() * 100000)}`, startedAt: nowISO(), finishedAt: null, pre: {}, post: {}, trials: [], uiStepIndex: 0, submitMessage: "" };
 
-const state = {
-  assignment: getOrAssignGroup(),
-  respondentId: `R-${Date.now()}-${Math.floor(Math.random() * 100000)}`,
-  startedAt: nowISO(),
-  finishedAt: null,
-  currentStep: 0,
-  pre: {},
-  trials: [],
-  post: {}
-};
-
-const totalSteps = 1 + blocks.reduce((acc, b) => acc + b.dilemmas.length, 0) + 1 + 1; 
-// intro/pre + 6 dilemmas + post + finish
-
+function getAdvisorRecommendation(dilemma, initialChoice) {
+  const oppositeIndex = dilemma.blockId === "everyday" ? state.assignment.oppositeEverydayIndex : state.assignment.oppositeClassicIndex;
+  const isOpposite = (dilemma.localIndex - 1) === oppositeIndex;
+  const recommendedOption = isOpposite ? (initialChoice === "A" ? "B" : "A") : initialChoice;
+  return { isOpposite, isCongruent: !isOpposite, recommendedOption };
+}
+function getAllUiSteps() {
+  const steps = [{ type: "intro" }];
+  dilemmas.forEach((dilemma, idx) => {
+    steps.push({ type: "initial_choice", dilemmaIndex: idx });
+    steps.push({ type: "initial_confidence", dilemmaIndex: idx });
+    steps.push({ type: "advice", dilemmaIndex: idx });
+    steps.push({ type: "final_choice", dilemmaIndex: idx });
+    steps.push({ type: "final_confidence", dilemmaIndex: idx });
+  });
+  steps.push({ type: "post" });
+  steps.push({ type: "finish" });
+  return steps;
+}
+function totalSteps() { return getAllUiSteps().length; }
 function setProgress() {
-  const pct = Math.round((state.currentStep / (totalSteps - 1)) * 100);
+  const pct = Math.round((state.uiStepIndex / (totalSteps() - 1)) * 100);
   document.getElementById("progressBar").style.width = pct + "%";
 }
-
-function render() {
-  setProgress();
-  const app = document.getElementById("app");
-  if (state.currentStep === 0) {
-    app.innerHTML = renderIntro();
-    bindIntro();
-    return;
+function ensureTrial(index) {
+  if (!state.trials[index]) {
+    const dilemma = dilemmas[index];
+    state.trials[index] = { respondentId: state.respondentId, advisorType: state.assignment.advisorType, groupNumber: state.assignment.groupNumber, patternIndex: state.assignment.patternIndex, oppositeEverydayIndex: state.assignment.oppositeEverydayIndex + 1, oppositeClassicIndex: state.assignment.oppositeClassicIndex + 1, dilemmaGlobalIndex: dilemma.globalIndex, blockId: dilemma.blockId, dilemmaIndex: dilemma.localIndex, dilemmaId: dilemma.id, initialChoice: "", initialConfidence: "", advisorRecommendedOption: "", advisorCongruentWithInitialChoice: "", advisorOppositeToInitialChoice: "", finalChoice: "", finalConfidence: "", changedChoiceAfterAdvice: "", timestamp: "" };
   }
-
-  let running = 1;
-  for (let b = 0; b < blocks.length; b++) {
-    for (let d = 0; d < blocks[b].dilemmas.length; d++) {
-      if (state.currentStep === running) {
-        app.innerHTML = renderTrial(b, d);
-        bindTrial(b, d);
-        return;
-      }
-      running++;
-    }
-  }
-
-  if (state.currentStep === running) {
-    app.innerHTML = renderPost();
-    bindPost();
-    return;
-  }
-  running++;
-
-  app.innerHTML = renderFinish();
-  bindFinish();
+  return state.trials[index];
 }
-
-function renderIntro() {
-  const a = state.assignment;
-  return `
-    <div class="card">
-      <h1>Исследование моральных дилемм</h1>
-      <p class="muted">Пожалуйста, ответьте на несколько вопросов о себе, затем последовательно решите 6 моральных дилемм. После каждого первоначального ответа вы увидите рекомендацию советника и сможете подтвердить или изменить свой выбор.</p>
-      <div class="card success">
-        <div class="small"><strong>Техническая информация для исследователя:</strong></div>
-        <div class="small">
-          <span class="pill">ID: ${state.respondentId}</span>
-          <span class="pill">Группа: ${a.groupNumber}</span>
-          <span class="pill">Тип советника: ${a.advisorType === "ai" ? "ИИ" : "Эксперт-философ"}</span>
-          <span class="pill">Противоположный совет: бытовой блок № ${a.oppositeEverydayIndex + 1}, классический блок № ${a.oppositeClassicIndex + 1}</span>
-        </div>
-      </div>
-      <h3>Вопросы до эксперимента</h3>
-      ${preQuestions.map(q => renderQuestion(q, "pre")).join("")}
-      <div class="actions">
-        <span></span>
-        <button id="startBtn">Перейти к дилеммам</button>
-      </div>
-      <div id="errorBox" class="error hidden"></div>
-    </div>
-  `;
-}
-
 function renderQuestion(q, section, existing = {}) {
-  const name = `${section}_${q.id}`;
-  const value = existing[q.id] || "";
-  if (q.type === "number") {
-    return `
-      <div class="card">
-        <label for="${name}">${q.label}</label>
-        <input id="${name}" name="${name}" type="number" min="${q.min || ''}" max="${q.max || ''}" value="${value}" />
-      </div>
-    `;
-  }
+  const name = `${section}_${q.id}`; const value = existing[q.id] || "";
+  if (q.type === "number") return `<div class="card"><label for="${name}">${q.label}</label><input id="${name}" name="${name}" type="number" min="${q.min || ''}" max="${q.max || ''}" value="${value}" /></div>`;
   if (q.type === "select" || q.type === "select_with_other") {
-    const options = ['<option value="">Выберите вариант</option>']
-      .concat(q.options.map(opt => `<option value="${opt}" ${value===opt?'selected':''}>${opt}</option>`))
-      .join("");
-    return `
-      <div class="card">
-        <label for="${name}">${q.label}</label>
-        <select id="${name}" name="${name}">${options}</select>
-        ${q.type === "select_with_other" ? `<input class="hidden" id="${name}_other" placeholder="Уточните вариант" style="margin-top:10px;" />` : ""}
-      </div>
-    `;
+    const options = ['<option value="">Выберите вариант</option>'].concat(q.options.map(opt => `<option value="${opt}" ${value===opt?'selected':''}>${opt}</option>`)).join("");
+    return `<div class="card"><label for="${name}">${q.label}</label><select id="${name}" name="${name}">${options}</select>${q.type === "select_with_other" ? `<input class="${value === 'Другое' ? '' : 'hidden'}" id="${name}_other" placeholder="Уточните вариант" style="margin-top:10px;" value="${existing[`${q.id}_other`] || ''}" />` : ""}</div>`;
   }
   if (q.type === "likert") {
-    const nums = [];
-    for (let i = q.scaleMin; i <= q.scaleMax; i++) {
-      nums.push(`
-        <label>
-          <input type="radio" name="${name}" value="${i}" ${String(value)===String(i)?'checked':''}/>
-          <div>${i}</div>
-        </label>
-      `);
-    }
-    return `
-      <div class="card">
-        <label>${q.label}</label>
-        <div class="small muted" style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span>${q.left || ""}</span><span>${q.right || ""}</span>
-        </div>
-        <div class="likert">${nums.join("")}</div>
-      </div>
-    `;
+    return `<div class="card"><label>${q.label}</label><div class="small muted" style="display:flex; justify-content:space-between; margin-bottom:8px;"><span>${q.left || ""}</span><span>${q.right || ""}</span></div><div class="likert">${Array.from({length: q.scaleMax - q.scaleMin + 1}, (_, i) => q.scaleMin + i).map(v => `<label><input type="radio" name="${name}" value="${v}" ${String(value)===String(v)?'checked':''}/><div>${v}</div></label>`).join("")}</div></div>`;
   }
   return "";
 }
-
+function showError(msg) { const box = document.getElementById("errorBox"); if (!box) return; box.textContent = msg; box.classList.remove("hidden"); }
+function clearError() { const box = document.getElementById("errorBox"); if (!box) return; box.textContent = ""; box.classList.add("hidden"); }
+function buildWideRow() {
+  const row = { respondentId: state.respondentId, startedAt: state.startedAt, finishedAt: state.finishedAt || "", groupNumber: state.assignment.groupNumber, patternIndex: state.assignment.patternIndex, advisorType: state.assignment.advisorType, oppositeEverydayIndex: state.assignment.oppositeEverydayIndex + 1, oppositeClassicIndex: state.assignment.oppositeClassicIndex + 1, gender: state.pre.gender || "", age: state.pre.age || "", education_level: state.pre.education_level || "", education_profile: state.pre.education_profile || "", employment_status: state.pre.employment_status || "", ai_usage: state.post.ai_usage || "", ai_trust: state.post.ai_trust || "", ai_agent: state.post.ai_agent || "", ai_agent_other: state.post.ai_agent_other || "" };
+  state.trials.forEach((t, idx) => {
+    const prefix = `dilemma_${idx + 1}`;
+    row[`${prefix}_id`] = t.dilemmaId || "";
+    row[`${prefix}_initialChoice`] = t.initialChoice || "";
+    row[`${prefix}_initialConfidence`] = t.initialConfidence || "";
+    row[`${prefix}_advisorRecommendedOption`] = t.advisorRecommendedOption || "";
+    row[`${prefix}_advisorCongruentWithInitialChoice`] = t.advisorCongruentWithInitialChoice;
+    row[`${prefix}_advisorOppositeToInitialChoice`] = t.advisorOppositeToInitialChoice;
+    row[`${prefix}_finalChoice`] = t.finalChoice || "";
+    row[`${prefix}_finalConfidence`] = t.finalConfidence || "";
+    row[`${prefix}_changedChoiceAfterAdvice`] = t.changedChoiceAfterAdvice;
+    row[`${prefix}_timestamp`] = t.timestamp || "";
+  });
+  return row;
+}
+function objectsToCSV(rows) {
+  if (!rows.length) return "";
+  const headers = Object.keys(rows[0]);
+  const esc = (value) => { const s = String(value ?? ""); return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s; };
+  return [headers.join(","), ...rows.map(row => headers.map(h => esc(row[h])).join(","))].join("\n");
+}
+function exportPayload() { return { respondentId: state.respondentId, startedAt: state.startedAt, finishedAt: state.finishedAt, assignment: state.assignment, pre: state.pre, post: state.post, trials: state.trials, csvRow: buildWideRow() }; }
+async function submitToGoogleSheets(rows) {
+  const payload = { source: "moral_experiment_18_groups", submittedAt: nowISO(), rows };
+  const response = await fetch(GOOGLE_SCRIPT_WEB_APP_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+  const text = await response.text(); let data = {}; try { data = JSON.parse(text); } catch (_) {}
+  if (!response.ok || data.ok === false) throw new Error(data.error || `Ошибка отправки (${response.status})`);
+  return data;
+}
+function renderIntro() {
+  return `<div class="card"><h1>Исследование моральных дилемм</h1><p class="muted">Здравствуйте! Благодарим вас за согласие принять участие в эксперименте. Пожалуйста, ответьте на несколько вопросов о себе, после чего последовательно решите 6 моральных дилемм.</p>${preQuestions.map(q => renderQuestion(q, "pre", state.pre)).join("")}<div class="actions"><button id="startBtn">Далее</button></div><div id="errorBox" class="error hidden"></div></div>`;
+}
 function bindIntro() {
-  for (const q of preQuestions) {
-    if (q.type === "select_with_other") {
-      const select = document.getElementById(`pre_${q.id}`);
-      const other = document.getElementById(`pre_${q.id}_other`);
-      if (select && other) {
-        select.addEventListener("change", () => {
-          other.classList.toggle("hidden", select.value !== "Другое");
-        });
-      }
-    }
-  }
   document.getElementById("startBtn").addEventListener("click", () => {
-    const data = {};
+    clearError(); const data = {};
     for (const q of preQuestions) {
       const el = document.getElementById(`pre_${q.id}`);
-      if (!el || !el.value) {
-        showError("Пожалуйста, заполните все вопросы перед началом.");
-        return;
-      }
+      if (!el || !el.value) return showError("Пожалуйста, заполните все поля.");
       if (q.type === "number") {
         const num = Number(el.value);
-        if (Number.isNaN(num) || (q.min && num < q.min) || (q.max && num > q.max)) {
-          showError(`Пожалуйста, укажите корректное значение для поля «${q.label}».`);
-          return;
-        }
+        if (Number.isNaN(num) || num < q.min || num > q.max) return showError(`Пожалуйста, укажите корректное значение для поля «${q.label}».`);
         data[q.id] = num;
-      } else {
-        data[q.id] = el.value;
-      }
+      } else data[q.id] = el.value;
     }
-    state.pre = data;
-    state.currentStep++;
-    
-async function submitToGoogleSheets(rows) {
-  if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL.includes("https://script.google.com/macros/s/AKfycbykduRvpkLkzhJd6cXAFQGI3JqkKuCynGMmUE5hZ_GIkIPcuSOo4bDbQpIYaQqXyZ0/exec")) {
-    throw new Error("Не задан URL веб-приложения Google Apps Script.");
-  }
-
-  const payload = {
-    source: "moral_experiment_18_groups",
-    submittedAt: nowISO(),
-    rows
-  };
-
-  const response = await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-    method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(payload)
-  });
-
-  const text = await response.text();
-  let data = {};
-  try { data = JSON.parse(text); } catch (_) {}
-
-  if (!response.ok || data.ok === false) {
-    throw new Error(data.error || `Ошибка отправки (${response.status})`);
-  }
-
-  return data;
-}
-
-render();
+    state.pre = data; state.uiStepIndex++; render();
   });
 }
-
-function getAdvisorRecommendation(blockIndex, dilemmaIndex, initialChoice) {
-  const oppositeIndex = blockIndex === 0
-    ? state.assignment.oppositeEverydayIndex
-    : state.assignment.oppositeClassicIndex;
-
-  const isOpposite = dilemmaIndex === oppositeIndex;
-  const recommendedOption = isOpposite ? (initialChoice === "A" ? "B" : "A") : initialChoice;
-  return {
-    isOpposite,
-    isCongruent: !isOpposite,
-    recommendedOption
-  };
+function renderChoiceStep(dilemma, trial, stepLabel, fieldName) {
+  const chosen = trial[fieldName] || "";
+  return `<div class="card"><div class="small muted">Шаг ${state.uiStepIndex + 1} из ${totalSteps()}</div><h2>Дилемма ${dilemma.globalIndex}</h2><p>${dilemma.text}</p><div class="card"><label>${stepLabel}</label><div class="radio-group"><label class="radio-option"><input type="radio" name="${fieldName}" value="A" ${chosen === "A" ? "checked" : ""}> <strong>A.</strong> ${dilemma.options.A}</label><label class="radio-option"><input type="radio" name="${fieldName}" value="B" ${chosen === "B" ? "checked" : ""}> <strong>B.</strong> ${dilemma.options.B}</label></div></div><div class="actions"><button id="nextBtn">Далее</button></div><div id="errorBox" class="error hidden"></div></div>`;
 }
-
-function renderTrial(blockIndex, dilemmaIndex) {
-  const block = blocks[blockIndex];
-  const dilemma = block.dilemmas[dilemmaIndex];
-  const advisorLabel = advisorLabels[state.assignment.advisorType];
-  return `
-    <div class="card">
-      <div class="small muted">Шаг ${state.currentStep} из ${totalSteps - 1}</div>
-      <h2>${block.title}</h2>
-      <h3>${dilemma.title}</h3>
-      <p>${dilemma.text}</p>
-
-      <div class="card">
-        <label>Ваш первоначальный выбор</label>
-        <div class="radio-group">
-          <label class="radio-option"><input type="radio" name="initial_choice" value="A"> <strong>A.</strong> ${dilemma.options.A}</label>
-          <label class="radio-option"><input type="radio" name="initial_choice" value="B"> <strong>B.</strong> ${dilemma.options.B}</label>
-        </div>
-      </div>
-
-      <div class="card">
-        <label>Насколько вы уверены в своём выборе?</label>
-        <div class="small muted" style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span>1 — совсем не уверен(а)</span><span>7 — полностью уверен(а)</span>
-        </div>
-        <div class="likert">
-          ${[1,2,3,4,5,6,7].map(i => `
-            <label><input type="radio" name="initial_confidence" value="${i}"><div>${i}</div></label>
-          `).join("")}
-        </div>
-      </div>
-
-      <div class="actions">
-        <span></span>
-        <button id="showAdviceBtn">Показать рекомендацию</button>
-      </div>
-
-      <div id="advisorStage" class="hidden"></div>
-      <div id="errorBox" class="error hidden"></div>
-    </div>
-  `;
-}
-
-function bindTrial(blockIndex, dilemmaIndex) {
-  document.getElementById("showAdviceBtn").addEventListener("click", () => {
-    const initialChoice = document.querySelector('input[name="initial_choice"]:checked')?.value;
-    const initialConfidence = document.querySelector('input[name="initial_confidence"]:checked')?.value;
-    if (!initialChoice || !initialConfidence) {
-      showError("Сначала выберите ответ и укажите уверенность.");
-      return;
+function bindChoiceStep(dilemmaIndex, fieldName) {
+  const trial = ensureTrial(dilemmaIndex);
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    clearError();
+    const value = document.querySelector(`input[name="${fieldName}"]:checked`)?.value;
+    if (!value) return showError("Пожалуйста, выберите один из вариантов.");
+    trial[fieldName] = value;
+    if (fieldName === "initialChoice") {
+      const rec = getAdvisorRecommendation(dilemmas[dilemmaIndex], value);
+      trial.advisorRecommendedOption = rec.recommendedOption;
+      trial.advisorCongruentWithInitialChoice = rec.isCongruent;
+      trial.advisorOppositeToInitialChoice = rec.isOpposite;
     }
-    const block = blocks[blockIndex];
-    const dilemma = block.dilemmas[dilemmaIndex];
-    const rec = getAdvisorRecommendation(blockIndex, dilemmaIndex, initialChoice);
-    const advisorStage = document.getElementById("advisorStage");
-    advisorStage.classList.remove("hidden");
-    advisorStage.innerHTML = `
-      <div class="advisor">
-        <h3>${advisorLabels[state.assignment.advisorType]}</h3>
-        <p><strong>Рекомендация:</strong> ${rec.recommendedOption}. ${dilemma.options[rec.recommendedOption]}</p>
-        <p>${dilemma.justifications[rec.recommendedOption]}</p>
-      </div>
-
-      <div class="card">
-        <label>Ваш окончательный выбор после рекомендации</label>
-        <div class="radio-group">
-          <label class="radio-option"><input type="radio" name="final_choice" value="A"> <strong>A.</strong> ${dilemma.options.A}</label>
-          <label class="radio-option"><input type="radio" name="final_choice" value="B"> <strong>B.</strong> ${dilemma.options.B}</label>
-        </div>
-      </div>
-
-      <div class="card">
-        <label>Насколько вы уверены в своём окончательном выборе?</label>
-        <div class="small muted" style="display:flex; justify-content:space-between; margin-bottom:8px;">
-          <span>1 — совсем не уверен(а)</span><span>7 — полностью уверен(а)</span>
-        </div>
-        <div class="likert">
-          ${[1,2,3,4,5,6,7].map(i => `
-            <label><input type="radio" name="final_confidence" value="${i}"><div>${i}</div></label>
-          `).join("")}
-        </div>
-      </div>
-
-      <div class="actions">
-        <button class="secondary" id="hideAdviceBtn">Назад</button>
-        <button id="nextTrialBtn">Далее</button>
-      </div>
-    `;
-
-    document.getElementById("hideAdviceBtn").addEventListener("click", () => {
-      advisorStage.classList.add("hidden");
-      advisorStage.innerHTML = "";
-    });
-
-    document.getElementById("nextTrialBtn").addEventListener("click", () => {
-      const finalChoice = document.querySelector('input[name="final_choice"]:checked')?.value;
-      const finalConfidence = document.querySelector('input[name="final_confidence"]:checked')?.value;
-      if (!finalChoice || !finalConfidence) {
-        showError("После рекомендации укажите окончательный ответ и уверенность.");
-        return;
-      }
-
-      state.trials.push({
-        respondentId: state.respondentId,
-        advisorType: state.assignment.advisorType,
-        groupNumber: state.assignment.groupNumber,
-        oppositeEverydayIndex: state.assignment.oppositeEverydayIndex + 1,
-        oppositeClassicIndex: state.assignment.oppositeClassicIndex + 1,
-        patternIndex: state.assignment.patternIndex,
-        blockId: block.id,
-        blockTitle: block.title,
-        dilemmaIndex: dilemmaIndex + 1,
-        dilemmaId: dilemma.id,
-        dilemmaTitle: dilemma.title,
-        initialChoice,
-        initialConfidence: Number(initialConfidence),
-        advisorRecommendedOption: rec.recommendedOption,
-        advisorCongruentWithInitialChoice: rec.isCongruent,
-        advisorOppositeToInitialChoice: rec.isOpposite,
-        finalChoice,
-        finalConfidence: Number(finalConfidence),
-        changedChoiceAfterAdvice: initialChoice !== finalChoice,
-        timestamp: nowISO()
-      });
-
-      state.currentStep++;
-      
-async function submitToGoogleSheets(rows) {
-  if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL.includes("https://script.google.com/macros/s/AKfycbykduRvpkLkzhJd6cXAFQGI3JqkKuCynGMmUE5hZ_GIkIPcuSOo4bDbQpIYaQqXyZ0/exec")) {
-    throw new Error("Не задан URL веб-приложения Google Apps Script.");
-  }
-
-  const payload = {
-    source: "moral_experiment_18_groups",
-    submittedAt: nowISO(),
-    rows
-  };
-
-  const response = await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-    method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(payload)
-  });
-
-  const text = await response.text();
-  let data = {};
-  try { data = JSON.parse(text); } catch (_) {}
-
-  if (!response.ok || data.ok === false) {
-    throw new Error(data.error || `Ошибка отправки (${response.status})`);
-  }
-
-  return data;
-}
-
-render();
-    });
+    state.uiStepIndex++; render();
   });
 }
-
+function renderConfidenceStep(dilemma, trial, fieldName) {
+  const chosen = String(trial[fieldName] || "");
+  return `<div class="card"><div class="small muted">Шаг ${state.uiStepIndex + 1} из ${totalSteps()}</div><h2>Дилемма ${dilemma.globalIndex}</h2><div class="card"><label>Насколько вы уверены в своём выборе?</label><div class="small muted" style="display:flex; justify-content:space-between; margin-bottom:8px;"><span>1 — совсем не уверен(а)</span><span>7 — полностью уверен(а)</span></div><div class="likert">${[1,2,3,4,5,6,7].map(i => `<label><input type="radio" name="${fieldName}" value="${i}" ${chosen === String(i) ? "checked" : ""}><div>${i}</div></label>`).join("")}</div></div><div class="actions"><button id="nextBtn">Далее</button></div><div id="errorBox" class="error hidden"></div></div>`;
+}
+function bindConfidenceStep(dilemmaIndex, fieldName) {
+  const trial = ensureTrial(dilemmaIndex);
+  document.getElementById("nextBtn").addEventListener("click", () => {
+    clearError();
+    const value = document.querySelector(`input[name="${fieldName}"]:checked`)?.value;
+    if (!value) return showError("Пожалуйста, укажите уверенность по шкале.");
+    trial[fieldName] = Number(value); state.uiStepIndex++; render();
+  });
+}
+function renderAdviceStep(dilemma, trial) {
+  return `<div class="card"><div class="small muted">Шаг ${state.uiStepIndex + 1} из ${totalSteps()}</div><h2>Дилемма ${dilemma.globalIndex}</h2><div class="advisor"><h3>${advisorLabels[state.assignment.advisorType]}</h3><p>${dilemma.justifications[trial.advisorRecommendedOption]}</p></div><div class="actions"><button id="nextBtn">Далее</button></div></div>`;
+}
+function bindAdviceStep() { document.getElementById("nextBtn").addEventListener("click", () => { state.uiStepIndex++; render(); }); }
 function renderPost() {
-  return `
-    <div class="card">
-      <h2>Вопросы после эксперимента</h2>
-      <p class="muted">Спасибо. Осталось ответить на несколько завершающих вопросов.</p>
-      ${postQuestions.map(q => renderQuestion(q, "post", state.post)).join("")}
-      <div class="actions">
-        <button class="secondary" id="backBtn">Назад</button>
-        <button id="finishBtn">Завершить</button>
-      </div>
-      <div id="errorBox" class="error hidden"></div>
-    </div>
-  `;
+  return `<div class="card">${postQuestions.map(q => renderQuestion(q, "post", state.post)).join("")}<div class="actions"><button id="finishBtn">Завершить и сохранить результаты</button></div><div id="errorBox" class="error hidden"></div></div>`;
 }
-
 function bindPost() {
   const agentSelect = document.getElementById("post_ai_agent");
   const agentOther = document.getElementById("post_ai_agent_other");
-  if (agentSelect && agentOther) {
-    agentSelect.addEventListener("change", () => {
-      agentOther.classList.toggle("hidden", agentSelect.value !== "Другое");
-    });
-  }
-
-  document.getElementById("backBtn").addEventListener("click", () => {
-    state.currentStep--;
-    state.trials.pop();
-    
-async function submitToGoogleSheets(rows) {
-  if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL.includes("https://script.google.com/macros/s/AKfycbykduRvpkLkzhJd6cXAFQGI3JqkKuCynGMmUE5hZ_GIkIPcuSOo4bDbQpIYaQqXyZ0/exec")) {
-    throw new Error("Не задан URL веб-приложения Google Apps Script.");
-  }
-
-  const payload = {
-    source: "moral_experiment_18_groups",
-    submittedAt: nowISO(),
-    rows
-  };
-
-  const response = await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-    method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(payload)
-  });
-
-  const text = await response.text();
-  let data = {};
-  try { data = JSON.parse(text); } catch (_) {}
-
-  if (!response.ok || data.ok === false) {
-    throw new Error(data.error || `Ошибка отправки (${response.status})`);
-  }
-
-  return data;
-}
-
-render();
-  });
-
-  document.getElementById("finishBtn").addEventListener("click", () => {
-    const data = {};
+  if (agentSelect && agentOther) agentSelect.addEventListener("change", () => agentOther.classList.toggle("hidden", agentSelect.value !== "Другое"));
+  document.getElementById("finishBtn").addEventListener("click", async () => {
+    clearError(); const data = {};
     for (const q of postQuestions) {
       if (q.type === "likert") {
         const value = document.querySelector(`input[name="post_${q.id}"]:checked`)?.value;
-        if (!value) {
-          showError("Пожалуйста, заполните все завершающие вопросы.");
-          return;
-        }
+        if (!value) return showError("Пожалуйста, заполните все поля.");
         data[q.id] = Number(value);
       } else {
         const el = document.getElementById(`post_${q.id}`);
-        if (!el || !el.value) {
-          showError("Пожалуйста, заполните все завершающие вопросы.");
-          return;
-        }
+        if (!el || !el.value) return showError("Пожалуйста, заполните все поля.");
         data[q.id] = el.value;
         if (q.type === "select_with_other" && el.value === "Другое") {
           const other = document.getElementById(`post_${q.id}_other`).value.trim();
-          if (!other) {
-            showError("Пожалуйста, уточните вариант в поле «Другое».");
-            return;
-          }
+          if (!other) return showError("Пожалуйста, уточните вариант в поле «Другое».");
           data[`${q.id}_other`] = other;
         }
       }
     }
-    state.post = data;
-    state.finishedAt = nowISO();
-    localStorage.setItem(RESULTS_KEY, objectsToCSV(buildFlatCSVRows()));
-    state.currentStep++;
-    
-async function submitToGoogleSheets(rows) {
-  if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL.includes("https://script.google.com/macros/s/AKfycbykduRvpkLkzhJd6cXAFQGI3JqkKuCynGMmUE5hZ_GIkIPcuSOo4bDbQpIYaQqXyZ0/exec")) {
-    throw new Error("Не задан URL веб-приложения Google Apps Script.");
-  }
-
-  const payload = {
-    source: "moral_experiment_18_groups",
-    submittedAt: nowISO(),
-    rows
-  };
-
-  const response = await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-    method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(payload)
-  });
-
-  const text = await response.text();
-  let data = {};
-  try { data = JSON.parse(text); } catch (_) {}
-
-  if (!response.ok || data.ok === false) {
-    throw new Error(data.error || `Ошибка отправки (${response.status})`);
-  }
-
-  return data;
-}
-
-render();
-  });
-}
-
-function exportPayload() {
-  return {
-    respondentId: state.respondentId,
-    startedAt: state.startedAt,
-    finishedAt: state.finishedAt,
-    assignment: state.assignment,
-    pre: state.pre,
-    post: state.post,
-    trials: state.trials
-  };
-}
-
-function trialsToCSV(trials) {
-  const rows = [];
-  const headers = [
-    "respondentId","advisorType","groupNumber","patternIndex","oppositeEverydayIndex","oppositeClassicIndex",
-    "blockId","blockTitle","dilemmaIndex","dilemmaId","dilemmaTitle",
-    "initialChoice","initialConfidence","advisorRecommendedOption",
-    "advisorCongruentWithInitialChoice","advisorOppositeToInitialChoice","finalChoice","finalConfidence",
-    "changedChoiceAfterAdvice","timestamp"
-  ];
-  rows.push(headers.join(","));
-  for (const t of trials) {
-    rows.push(headers.map(h => JSON.stringify(t[h] ?? "")).join(","));
-  }
-  return rows.join("\n");
-}
-
-function renderFinish() {
-  const payload = exportPayload();
-  return `
-    <div class="card">
-      <h2>Спасибо за участие</h2>
-      <p>Эксперимент завершён. Данные можно сразу отправить в общий Google Sheets, а также скачать локальный CSV как резервную копию.</p>
-
-      <div class="card success">
-        <div class="small"><strong>Служебная сводка:</strong></div>
-        <div class="small">
-          <span class="pill">Группа ${state.assignment.groupNumber}</span>
-          <span class="pill">${state.assignment.advisorType === "ai" ? "ИИ" : "Эксперт-философ"}</span>
-          <span class="pill">Противоположный совет: бытовой блок № ${state.assignment.oppositeEverydayIndex + 1}, классический блок № ${state.assignment.oppositeClassicIndex + 1}</span>
-          <span class="pill">Изменений ответа после совета: ${state.trials.filter(t => t.changedChoiceAfterAdvice).length}</span>
-        </div>
-      </div>
-
-      <div class="actions">
-        <button id="sendToSheetsBtn">Сохранить результаты</button>
-        <button class="secondary" id="downloadCsvBtn">Скачать CSV</button>
-        <button class="secondary" id="downloadJsonBtn">Скачать JSON</button>
-        <button class="secondary" id="restartBtn">Сбросить группу и начать заново</button>
-      </div>
-      <div id="sendStatus" class="small muted" style="margin-top:10px;"></div>
-      <div class="actions">
-      </div>
-
-      <div class="summary">
-        <h3>Предпросмотр структуры данных</h3>
-        <pre>${escapeHtml(JSON.stringify(payload, null, 2))}</pre>
-      </div>
-    </div>
-  `;
-}
-
-function bindFinish() {
-  document.getElementById("sendToSheetsBtn").addEventListener("click", async () => {
-    const status = document.getElementById("sendStatus");
-    const btn = document.getElementById("sendToSheetsBtn");
-    btn.disabled = true;
-    status.textContent = "Отправка данных в Google Sheets...";
+    state.post = data; state.finishedAt = nowISO();
+    state.trials.forEach(t => { t.changedChoiceAfterAdvice = t.initialChoice !== t.finalChoice; t.timestamp = nowISO(); });
+    const btn = document.getElementById("finishBtn");
+    btn.disabled = true; btn.textContent = "Сохранение...";
     try {
-      const result = await submitToGoogleSheets([buildWideRow()]);
-      status.textContent = `Данные отправлены. Добавлено строк: ${result.appendedRows ?? 1}`;
-      status.className = "small";
+      const csv = objectsToCSV([buildWideRow()]);
+      localStorage.setItem(RESULTS_KEY, csv);
+      await submitToGoogleSheets([buildWideRow()]);
+      state.submitMessage = "Результаты успешно сохранены.";
+      state.uiStepIndex++; render();
     } catch (error) {
-      status.textContent = "Не удалось отправить данные: " + error.message;
-      status.className = "small error";
-    } finally {
-      btn.disabled = false;
+      btn.disabled = false; btn.textContent = "Завершить и сохранить результаты";
+      showError("Не удалось сохранить результаты: " + error.message);
     }
   });
-
-  document.getElementById("downloadCsvBtn").addEventListener("click", () => {
-    downloadFile(`${state.respondentId}_results.csv`, objectsToCSV([buildWideRow()]), "text/csv;charset=utf-8");
-  });
-  document.getElementById("downloadJsonBtn").addEventListener("click", () => {
-    downloadFile(`${state.respondentId}_results.json`, JSON.stringify(exportPayload(), null, 2), "application/json");
-  });
-  document.getElementById("restartBtn").addEventListener("click", () => {
-    localStorage.removeItem(STORAGE_KEY);
-    localStorage.removeItem(RESULTS_KEY);
-    location.reload();
-  });
 }
-
-function showError(msg) {
-  const box = document.getElementById("errorBox");
-  if (!box) return;
-  box.textContent = msg;
-  box.classList.remove("hidden");
+function renderFinish() {
+  const payload = exportPayload();
+  return `<div class="card"><h2>Спасибо за участие</h2><div class="card success"><p>${state.submitMessage || "Результаты успешно сохранены."}</p></div><div class="actions"><button id="downloadCsvBtn">Скачать CSV</button><button id="downloadJsonBtn">Скачать JSON</button></div><div class="summary"><h3>Предпросмотр структуры данных</h3><pre>${escapeHtml(JSON.stringify(payload, null, 2))}</pre></div></div>`;
 }
-
-function escapeHtml(str) {
-  return str
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
+function bindFinish() {
+  document.getElementById("downloadCsvBtn").addEventListener("click", () => downloadFile(`${state.respondentId}_results.csv`, objectsToCSV([buildWideRow()]), "text/csv;charset=utf-8"));
+  document.getElementById("downloadJsonBtn").addEventListener("click", () => downloadFile(`${state.respondentId}_results.json`, JSON.stringify(exportPayload(), null, 2), "application/json"));
 }
-
-
-async function submitToGoogleSheets(rows) {
-  if (!GOOGLE_SCRIPT_WEB_APP_URL || GOOGLE_SCRIPT_WEB_APP_URL.includes("https://script.google.com/macros/s/AKfycbykduRvpkLkzhJd6cXAFQGI3JqkKuCynGMmUE5hZ_GIkIPcuSOo4bDbQpIYaQqXyZ0/exec")) {
-    throw new Error("Не задан URL веб-приложения Google Apps Script.");
-  }
-
-  const payload = {
-    source: "moral_experiment_18_groups",
-    submittedAt: nowISO(),
-    rows
-  };
-
-  const response = await fetch(GOOGLE_SCRIPT_WEB_APP_URL, {
-    method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    body: JSON.stringify(payload)
-  });
-
-  const text = await response.text();
-  let data = {};
-  try { data = JSON.parse(text); } catch (_) {}
-
-  if (!response.ok || data.ok === false) {
-    throw new Error(data.error || `Ошибка отправки (${response.status})`);
-  }
-
-  return data;
+function escapeHtml(str) { return str.replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;"); }
+function render() {
+  setProgress();
+  const step = getAllUiSteps()[state.uiStepIndex];
+  const app = document.getElementById("app");
+  if (step.type === "intro") { app.innerHTML = renderIntro(); bindIntro(); return; }
+  if (step.type === "initial_choice") { const d = dilemmas[step.dilemmaIndex]; const t = ensureTrial(step.dilemmaIndex); app.innerHTML = renderChoiceStep(d, t, "Ваш выбор", "initialChoice"); bindChoiceStep(step.dilemmaIndex, "initialChoice"); return; }
+  if (step.type === "initial_confidence") { const d = dilemmas[step.dilemmaIndex]; const t = ensureTrial(step.dilemmaIndex); app.innerHTML = renderConfidenceStep(d, t, "initialConfidence"); bindConfidenceStep(step.dilemmaIndex, "initialConfidence"); return; }
+  if (step.type === "advice") { const d = dilemmas[step.dilemmaIndex]; const t = ensureTrial(step.dilemmaIndex); app.innerHTML = renderAdviceStep(d, t); bindAdviceStep(); return; }
+  if (step.type === "final_choice") { const d = dilemmas[step.dilemmaIndex]; const t = ensureTrial(step.dilemmaIndex); app.innerHTML = renderChoiceStep(d, t, "Ваш окончательный выбор", "finalChoice"); bindChoiceStep(step.dilemmaIndex, "finalChoice"); return; }
+  if (step.type === "final_confidence") { const d = dilemmas[step.dilemmaIndex]; const t = ensureTrial(step.dilemmaIndex); app.innerHTML = renderConfidenceStep(d, t, "finalConfidence"); bindConfidenceStep(step.dilemmaIndex, "finalConfidence"); return; }
+  if (step.type === "post") { app.innerHTML = renderPost(); bindPost(); return; }
+  app.innerHTML = renderFinish(); bindFinish();
 }
-
 render();
 </script>
 </body>
