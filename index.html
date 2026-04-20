@@ -60,9 +60,9 @@ function getOrAssignGroup() {
   const groupNumber = Math.floor(Math.random() * 18) + 1;
   const advisorType = groupNumber <= 9 ? "ai" : "human";
   const patternIndex = (groupNumber - 1) % 9;
-  const oppositeEverydayIndex = Math.floor(patternIndex / 3);
-  const oppositeClassicIndex = patternIndex % 3;
-  const assignment = { groupNumber, advisorType, patternIndex: patternIndex + 1, oppositeEverydayIndex, oppositeClassicIndex, createdAt: nowISO() };
+  const congruentEverydayIndex = Math.floor(patternIndex / 3);
+  const congruentClassicIndex = patternIndex % 3;
+  const assignment = { groupNumber, advisorType, patternIndex: patternIndex + 1, congruentEverydayIndex, congruentClassicIndex, createdAt: nowISO() };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(assignment));
   return assignment;
 }
@@ -93,10 +93,10 @@ const dilemmas = [
 const state = { assignment: getOrAssignGroup(), respondentId: `R-${Date.now()}-${Math.floor(Math.random() * 100000)}`, startedAt: nowISO(), finishedAt: null, pre: {}, post: {}, trials: [], uiStepIndex: 0, submitMessage: "" };
 
 function getAdvisorRecommendation(dilemma, initialChoice) {
-  const oppositeIndex = dilemma.blockId === "everyday" ? state.assignment.oppositeEverydayIndex : state.assignment.oppositeClassicIndex;
-  const isOpposite = (dilemma.localIndex - 1) === oppositeIndex;
-  const recommendedOption = isOpposite ? (initialChoice === "A" ? "B" : "A") : initialChoice;
-  return { isOpposite, isCongruent: !isOpposite, recommendedOption };
+  const congruentIndex = dilemma.blockId === "everyday" ? state.assignment.congruentEverydayIndex : state.assignment.congruentClassicIndex;
+  const isCongruent = (dilemma.localIndex - 1) === congruentIndex;
+  const recommendedOption = isCongruent ? initialChoice : (initialChoice === "A" ? "B" : "A");
+  return { isOpposite: !isCongruent, isCongruent, recommendedOption };
 }
 function getAllUiSteps() {
   const steps = [{ type: "intro" }];
@@ -119,7 +119,7 @@ function setProgress() {
 function ensureTrial(index) {
   if (!state.trials[index]) {
     const dilemma = dilemmas[index];
-    state.trials[index] = { respondentId: state.respondentId, advisorType: state.assignment.advisorType, groupNumber: state.assignment.groupNumber, patternIndex: state.assignment.patternIndex, oppositeEverydayIndex: state.assignment.oppositeEverydayIndex + 1, oppositeClassicIndex: state.assignment.oppositeClassicIndex + 1, dilemmaGlobalIndex: dilemma.globalIndex, blockId: dilemma.blockId, dilemmaIndex: dilemma.localIndex, dilemmaId: dilemma.id, initialChoice: "", initialConfidence: "", advisorRecommendedOption: "", advisorCongruentWithInitialChoice: "", advisorOppositeToInitialChoice: "", finalChoice: "", finalConfidence: "", changedChoiceAfterAdvice: "", timestamp: "" };
+    state.trials[index] = { respondentId: state.respondentId, advisorType: state.assignment.advisorType, groupNumber: state.assignment.groupNumber, patternIndex: state.assignment.patternIndex, congruentEverydayIndex: state.assignment.congruentEverydayIndex + 1, congruentClassicIndex: state.assignment.congruentClassicIndex + 1, dilemmaGlobalIndex: dilemma.globalIndex, blockId: dilemma.blockId, dilemmaIndex: dilemma.localIndex, dilemmaId: dilemma.id, initialChoice: "", initialConfidence: "", advisorRecommendedOption: "", advisorCongruentWithInitialChoice: "", advisorOppositeToInitialChoice: "", finalChoice: "", finalConfidence: "", changedChoiceAfterAdvice: "", timestamp: "" };
   }
   return state.trials[index];
 }
@@ -138,7 +138,7 @@ function renderQuestion(q, section, existing = {}) {
 function showError(msg) { const box = document.getElementById("errorBox"); if (!box) return; box.textContent = msg; box.classList.remove("hidden"); }
 function clearError() { const box = document.getElementById("errorBox"); if (!box) return; box.textContent = ""; box.classList.add("hidden"); }
 function buildWideRow() {
-  const row = { respondentId: state.respondentId, startedAt: state.startedAt, finishedAt: state.finishedAt || "", groupNumber: state.assignment.groupNumber, patternIndex: state.assignment.patternIndex, advisorType: state.assignment.advisorType, oppositeEverydayIndex: state.assignment.oppositeEverydayIndex + 1, oppositeClassicIndex: state.assignment.oppositeClassicIndex + 1, gender: state.pre.gender || "", age: state.pre.age || "", education_level: state.pre.education_level || "", education_profile: state.pre.education_profile || "", employment_status: state.pre.employment_status || "", ai_usage: state.post.ai_usage || "", ai_trust: state.post.ai_trust || "", ai_agent: state.post.ai_agent || "", ai_agent_other: state.post.ai_agent_other || "" };
+  const row = { respondentId: state.respondentId, startedAt: state.startedAt, finishedAt: state.finishedAt || "", groupNumber: state.assignment.groupNumber, patternIndex: state.assignment.patternIndex, advisorType: state.assignment.advisorType, congruentEverydayIndex: state.assignment.congruentEverydayIndex + 1, congruentClassicIndex: state.assignment.congruentClassicIndex + 1, gender: state.pre.gender || "", age: state.pre.age || "", education_level: state.pre.education_level || "", education_profile: state.pre.education_profile || "", employment_status: state.pre.employment_status || "", ai_usage: state.post.ai_usage || "", ai_trust: state.post.ai_trust || "", ai_agent: state.post.ai_agent || "", ai_agent_other: state.post.ai_agent_other || "" };
   state.trials.forEach((t, idx) => {
     const prefix = `dilemma_${idx + 1}`;
     row[`${prefix}_id`] = t.dilemmaId || "";
